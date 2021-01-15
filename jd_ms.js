@@ -37,8 +37,7 @@ if ($.isNode()) {
   })
   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
   };
-  if(JSON.stringify(process.env).indexOf('GITHUB')>-1) process.exit(0)
-} else {
+
   let cookiesData = $.getdata('CookiesJD') || "[]";
   cookiesData = jsonParse(cookiesData);
   cookiesArr = cookiesData.map(item => item.cookie);
@@ -46,7 +45,7 @@ if ($.isNode()) {
   cookiesArr.push(...[$.getdata('CookieJD2'), $.getdata('CookieJD')]);
   cookiesArr.reverse();
   cookiesArr = cookiesArr.filter(item => item !== "" && item !== null && item !== undefined);
-}
+
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 !(async () => {
   if (!cookiesArr[0]) {
